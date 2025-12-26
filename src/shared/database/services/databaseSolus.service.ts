@@ -20,7 +20,7 @@ export class DatabaseSolusService implements IDatabase {
             await this.createPool();
         })();
 
-        oracledb.initOracleClient();
+        // oracledb.initOracleClient();
     }
 
     async createPool() {
