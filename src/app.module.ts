@@ -6,6 +6,7 @@ import { AuthServiceModule } from './auth/services/authService.module';
 // import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
 import { PostOcrAsyncModule } from './santoId/ocrAsync.module';
+import { SantoIdWebhookModule } from './webhook/santoIdWebhook.module';
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import { PostOcrAsyncModule } from './santoId/ocrAsync.module';
         // DatabaseModule,
         // SharedModule,
         PostOcrAsyncModule,
+        SantoIdWebhookModule,
     ],
     controllers: [],
     providers: [],
