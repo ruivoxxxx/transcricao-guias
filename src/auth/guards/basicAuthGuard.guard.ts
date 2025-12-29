@@ -12,16 +12,18 @@ export class BasicAuthGuard implements CanActivate {
         const auth = req.headers.authorization;
 
         if (!auth || !auth.startsWith('Basic ')) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException('Authorization header ausente');
         }
 
         const base64 = auth.replace('Basic ', '');
-        const [user, pass] = Buffer.from(base64, 'base64')
-            .toString()
-            .split(':');
+        const decoded = Buffer.from(base64, 'base64').toString('utf-8');
+        const [user, pass] = decoded.split(':');
 
-        if (user !== 'santoid' || pass !== 'webhook') {
-            throw new UnauthorizedException();
+        if (
+            user !== process.env.WEBHOOK_BASIC_USER ||
+            pass !== process.env.WEBHOOK_BASIC_PASS
+        ) {
+            throw new UnauthorizedException('Credenciais inválidas');
         }
 
         return true;
