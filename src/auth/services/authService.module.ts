@@ -11,7 +11,6 @@ import axios from 'axios';
         {
             provide: 'SANTO_ID',
             useFactory: () => {
-                console.log(process.env.SANTO_ID_TOKEN);
                 return axios.create({
                     baseURL: 'https://api.santoid.com.br/api/v1',
                     timeout: 10000,

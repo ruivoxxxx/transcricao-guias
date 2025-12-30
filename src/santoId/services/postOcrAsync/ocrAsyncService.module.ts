@@ -13,7 +13,7 @@ import { AuthServiceModule } from 'src/auth/services/authService.module';
             useFactory: () => {
                 return axios.create({
                     baseURL: 'https://api.santoid.com.br/api/v1',
-                    timeout: 10000,
+                    timeout: 100000000,
                     headers: {
                         'Content-Type': 'application/json',
                     },

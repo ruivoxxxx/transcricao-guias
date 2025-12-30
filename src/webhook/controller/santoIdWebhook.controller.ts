@@ -15,6 +15,7 @@ export class SantoIdWebhookController {
     }
 
     @Get('health')
+    @UseGuards(BasicAuthGuard)
     async heathcheck() {
         return { status: 'ok' };
     }
