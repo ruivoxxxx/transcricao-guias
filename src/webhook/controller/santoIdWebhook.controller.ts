@@ -7,12 +7,22 @@ export class SantoIdWebhookController {
     @Post()
     @UseGuards(BasicAuthGuard)
     async handleOcrWebhook(@Body() payload: any) {
-        console.log('Received webhook payload:', payload);
+        const labels = payload.documents?.[0]?.ocr?.labels;
 
-        // Process the payload as needed
+  if (!labels) {
+    console.log('Nenhum label encontrado');
+    return { status: 'ignored' };
+  }
 
-        return { status: 'success' };
-    }
+  for (const label of labels) {
+    const value =
+      label.ocrInterpretive ??
+      label.text ??
+      null;
+
+    console.log(`Campo ${label.label}:`, value);
+
+    }}
 
     @Get('health')
     @UseGuards(BasicAuthGuard)
